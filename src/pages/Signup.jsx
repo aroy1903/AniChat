@@ -44,8 +44,14 @@ export default function Signup() {
   };
 
   return (
-    <div className=" flex-grow flex justify-center items-center">
-      <Box w={['full', 'md']} p={[8, 10]} boxShadow="dark-lg" borderRadius={10}>
+    <div className=" flex-grow flex justify-center items-center bg-[#F6EEF8]">
+      <Box
+        w={['full', 'md']}
+        p={[8, 10]}
+        boxShadow="dark-lg"
+        borderRadius={10}
+        backgroundColor="white"
+      >
         <VStack spacing={4} align="center" w="full">
           <VStack spacing={1} align="center" w="full">
             <Heading>Sign Up</Heading>

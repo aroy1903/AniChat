@@ -32,8 +32,15 @@ export default function Login() {
   };
 
   return (
-    <div className=" flex-grow flex justify-center items-center">
-      <Box w={['full', 'md']} p={[8, 10]} borderRadius={10} boxShadow="dark-lg">
+    <div className=" flex-grow flex justify-center items-center bg-[#F6EEF8]">
+      <Box
+        w={['full', 'md']}
+        p={[8, 10]}
+        borderRadius={10}
+        boxShadow="dark-lg"
+        backgroundColor="white"
+        color="black"
+      >
         <VStack spacing={4} align="center" w="full">
           <VStack spacing={1} align="center" w="full">
             <Heading>Login</Heading>
@@ -63,7 +70,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
-          <Button colorScheme="gray" onClick={handleSubmit}>
+          <Button type="submit" colorScheme="gray" onClick={handleSubmit}>
             Login
           </Button>
         </VStack>

@@ -26,22 +26,22 @@ export default function NavBar() {
             style={user ? { width: '220px' } : { width: '160px' }}
           >
             {!user && (
-              <li>
+              <li className=" hover:underline">
                 <Link to="/login">Login</Link>
               </li>
             )}
             {!user && (
-              <li>
+              <li className=" hover:underline">
                 <Link to="/signup">Signup</Link>
               </li>
             )}
-            {user && <li> Welcome {user.displayName}!</li>}
+            {user && <li> welcome {user.displayName}!</li>}
             {user && (
               <li
                 className=" hover:underline cursor-pointer"
                 onClick={handleLogOut}
               >
-                Logout
+                logout
               </li>
             )}
           </div>

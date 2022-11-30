@@ -5,7 +5,6 @@ import App from './App';
 import { AuthContext } from './authcontext/authContext';
 import './index.css';
 import useAuth from './hooks/useAuth';
-//const { authIsReady } = useAuth();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
