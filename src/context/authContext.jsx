@@ -7,7 +7,6 @@ const reducerFunc = (state, action) => {
     case 'AUTHSTATECHANGED':
       return { user: action.payload, authIsReady: true };
     case 'LOGIN':
-      console.log(action.payload);
       return { ...state, user: action.payload };
     case 'LOGOUT':
       return { ...state, user: null };

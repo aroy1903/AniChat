@@ -1,12 +1,15 @@
 import { createContext, useReducer } from 'react';
-import Groups from '../components/Groups';
+import InviGroup from '../components/InviGroup';
+import UserGroups from '../components/UserGroups';
 
 export const Render = createContext();
 
 const renderReducer = (state, action) => {
   switch (action.type) {
     case 'GROUP':
-      return <Accordion />;
+      return { ...state, component: <InviGroup /> };
+    case 'USER':
+      return { ...state, component: <UserGroups /> };
 
     default:
       return state;
@@ -15,7 +18,8 @@ const renderReducer = (state, action) => {
 
 export default function RenderContext({ children }) {
   const [state, dispatch] = useReducer(renderReducer, {
-    component: <Groups />,
+    component: <UserGroups />,
+    anime: null,
   });
 
   return (

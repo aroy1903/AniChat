@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Render } from '../renderContext/renderContext';
+import { Render } from '../context/renderContext';
 
 export default function useRender() {
   const context = useContext(Render);

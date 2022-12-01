@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { AuthContext } from './authcontext/authContext';
+import { AuthContext } from './context/authContext';
 import './index.css';
 import useAuth from './hooks/useAuth';
 

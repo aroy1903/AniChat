@@ -8,7 +8,9 @@ import {
   FormLabel,
   Input,
   Button,
+  HStack,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import useAuth from '../hooks/useAuth';
 import { auth } from '../firebase/firebaseConfig';
@@ -16,13 +18,18 @@ import { auth } from '../firebase/firebaseConfig';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [formError, setFormError] = useState(null);
   const { dispatch } = useAuth();
 
   const [signInWithEmailAndPassword, user, error] =
     useSignInWithEmailAndPassword(auth);
 
   const handleSubmit = async () => {
-    console.log(email, password);
+    if (email === '' || password === '') {
+      setFormError('A required field is missing');
+      setTimeout(() => setFormError(null), 3000);
+      return;
+    }
     const res = await signInWithEmailAndPassword(email, password);
     dispatch({ type: 'LOGIN', payload: res.user });
     if (res) {
@@ -45,6 +52,7 @@ export default function Login() {
           <VStack spacing={1} align="center" w="full">
             <Heading>Login</Heading>
             {error && <Text>{error.message}</Text>}
+            {formError && <Text>{formError}</Text>}
           </VStack>
           <FormControl>
             <FormLabel>e-mail address:</FormLabel>
@@ -70,6 +78,11 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
+          <HStack w="full" justify="flex-end">
+            <Text>
+              <Link to="/forgot">forgot password?</Link>
+            </Text>
+          </HStack>
           <Button type="submit" colorScheme="gray" onClick={handleSubmit}>
             Login
           </Button>

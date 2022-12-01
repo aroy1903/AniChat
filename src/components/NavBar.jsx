@@ -23,19 +23,24 @@ export default function NavBar() {
           </h1>
           <div
             className=" flex justify-between items-center h-full text-lg"
-            style={user ? { width: '220px' } : { width: '160px' }}
+            style={user ? { width: '270px' } : { width: '160px' }}
           >
             {!user && (
               <li className=" hover:underline">
-                <Link to="/login">Login</Link>
+                <Link to="/login">login</Link>
               </li>
             )}
             {!user && (
               <li className=" hover:underline">
-                <Link to="/signup">Signup</Link>
+                <Link to="/signup">signup</Link>
               </li>
             )}
             {user && <li> welcome {user.displayName}!</li>}
+            {user && (
+              <li className=" hover:underline">
+                <Link to="/chat">chat</Link>
+              </li>
+            )}
             {user && (
               <li
                 className=" hover:underline cursor-pointer"

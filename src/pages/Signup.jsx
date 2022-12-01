@@ -22,6 +22,7 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
+  const [formError, setFormError] = useState(null);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile] = useUpdateProfile(auth);
@@ -29,7 +30,11 @@ export default function Signup() {
   const { dispatch } = useAuth();
 
   const handleSubmit = async () => {
-    console.log(email, password, displayName);
+    if (email === '' || password === '' || displayName === '') {
+      setFormError('A required field is missing');
+      setTimeout(() => setFormError(null), 3000);
+      return;
+    }
     const res = await createUserWithEmailAndPassword(email, password);
     const update = await updateProfile({ displayName });
     if (res) {
@@ -56,9 +61,10 @@ export default function Signup() {
           <VStack spacing={1} align="center" w="full">
             <Heading>Sign Up</Heading>
             {error && <Text>{error.message}</Text>}
+            {formError && <Text>{formError}</Text>}
           </VStack>
-          <FormControl>
-            <FormLabel>e-mail address:</FormLabel>
+          <FormControl id="email" isRequired>
+            <FormLabel>e-mail address</FormLabel>
             <Input
               rounded="none"
               variant="filled"
@@ -69,8 +75,8 @@ export default function Signup() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormControl>
-          <FormControl>
-            <FormLabel>password:</FormLabel>
+          <FormControl id="password" isRequired>
+            <FormLabel>password</FormLabel>
             <Input
               rounded="none"
               variant="filled"
@@ -81,8 +87,8 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
-          <FormControl>
-            <FormLabel>display name: </FormLabel>
+          <FormControl id="displayName" isRequired>
+            <FormLabel>display name </FormLabel>
             <Input
               rounded="none"
               variant="filled"
