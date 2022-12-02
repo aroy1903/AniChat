@@ -8,26 +8,28 @@ import { GoDiffAdded } from 'react-icons/go';
 
 export default function Chat() {
   const { dispatch } = useRender();
+  const [popup, setPopup] = useState(false);
+  const setter = () => setPopup(!popup);
 
   return (
     <div className=" flex-grow flex justify-center items-center  bg-[#F6EEF8]">
-      <div className=" h-[780px] w-[52%] border-black rounded-2xl border-2 flex">
+      <div className=" h-[750px] w-[52%] border-black rounded-2xl border-2 flex">
         <Groups />
         <div className="flex-grow flex flex-col">
-          <div className=" flex w-full items-center h-9 justify-end ">
-            <div className=" flex w-1/4 justify-around">
+          <div className=" flex w-full items-center h-9 justify-end border-b-2 border-black ">
+            <div className=" flex w-1/4 justify-around ">
               <h2
-                className="cursor-pointer text-xl"
+                className="cursor-pointer text-[16px] hover:underline"
                 onClick={() => dispatch({ type: 'USER' })}
               >
                 My Groups
               </h2>
-              <button className=" text-2xl">
+              <button className=" text-2xl" onClick={() => setPopup(true)}>
                 <GoDiffAdded />
               </button>
             </div>
           </div>
-          <UserScreen />
+          <UserScreen p={popup} set={setter} />
         </div>
       </div>
     </div>

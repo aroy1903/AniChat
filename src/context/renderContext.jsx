@@ -7,7 +7,7 @@ export const Render = createContext();
 const renderReducer = (state, action) => {
   switch (action.type) {
     case 'GROUP':
-      return { ...state, component: <InviGroup /> };
+      return { ...state, component: <InviGroup />, anime: action.payload };
     case 'USER':
       return { ...state, component: <UserGroups /> };
 

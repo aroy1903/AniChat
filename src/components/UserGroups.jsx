@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function UserGroups() {
-  return <div className=" bg-red-900 h-full w-full">User Groups</div>;
+  return <div className=" bg-transparent h-full w-full">My Groups</div>;
 }

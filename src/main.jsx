@@ -5,12 +5,15 @@ import App from './App';
 import { AuthContext } from './context/authContext';
 import './index.css';
 import useAuth from './hooks/useAuth';
+import RenderContext from './context/renderContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthContext>
-        <App />
+        <RenderContext>
+          <App />
+        </RenderContext>
       </AuthContext>
     </BrowserRouter>
   </React.StrictMode>
