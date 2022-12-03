@@ -15,6 +15,8 @@ export default function Group({ data }) {
       borderRadius="0"
       cursor="pointer"
       borderY="1px"
+      marginBottom="4px"
+      onClick={() => dispatch({ type: 'CHAT', payload: data.anime })}
     >
       <Image
         objectFit="cover"

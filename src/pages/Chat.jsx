@@ -13,7 +13,7 @@ export default function Chat() {
 
   return (
     <div className=" flex-grow flex justify-center items-center  bg-[#F6EEF8]">
-      <div className=" h-[750px] w-[52%] border-black rounded-2xl border-2 flex">
+      <div className=" h-[750px] w-[52%] border-black rounded-2xl border-2 flex bg-white">
         <Groups />
         <div className="flex-grow flex flex-col">
           <div className=" flex w-full items-center h-9 justify-end border-b-2 border-black ">

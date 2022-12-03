@@ -42,12 +42,12 @@ export default function GroupPopup({ set }) {
 
   return (
     <Box
-      w={['full', 'md']}
+      w={['full', 'sm']}
       p={[8, 10]}
       boxShadow="dark-lg"
       borderRadius={10}
       backgroundColor="white"
-      className=" z-10 relative bottom-[70%] left-[15%]"
+      className=" z-10 relative bottom-[70%] left-[3%] mx-auto "
     >
       <Text
         textAlign="end"
