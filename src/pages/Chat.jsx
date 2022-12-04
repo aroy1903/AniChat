@@ -17,9 +17,9 @@ export default function Chat() {
         <Groups />
         <div className="flex-grow flex flex-col">
           <div className=" flex w-full items-center h-9 justify-end border-b-2 border-black ">
-            <div className=" flex w-1/4 justify-around ">
+            <div className=" flex w-1/4 justify-around mr-3 w[25%] ">
               <h2
-                className="cursor-pointer text-[16px] hover:underline"
+                className="cursor-pointer text-[16px] hover:underline w-[75%]"
                 onClick={() => dispatch({ type: 'USER' })}
               >
                 My Groups

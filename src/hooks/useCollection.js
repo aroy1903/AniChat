@@ -8,20 +8,20 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
 
-export default function useCollection(queryArr) {
+export default function useCollection(collectionName, queryArr) {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const queryA = useRef(queryArr).current;
   let _query;
   if (!queryArr) {
-    _query = ['id', '!=', '1'];
+    _query = ['createdAt', '!=', '1'];
   } else {
-    _query = useRef(queryArr).current;
+    _query = queryA;
   }
 
-  const colRef = collection(db, 'groups');
-  let q = query(colRef, where(..._query), orderBy(_query[0]));
+  const colRef = collection(db, collectionName);
+  let q = query(colRef, where(..._query), orderBy('createdAt', 'desc'));
 
   useEffect(() => {
     setLoading(true);
@@ -41,7 +41,7 @@ export default function useCollection(queryArr) {
       }
     );
     return () => unsub();
-  }, []);
+  }, [queryA]);
 
   return { documents, error, loading };
 }

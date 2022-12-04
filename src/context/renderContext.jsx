@@ -12,7 +12,6 @@ const renderReducer = (state, action) => {
     case 'USER':
       return { ...state, component: <UserGroups /> };
     case 'CHAT':
-      console.log(action.payload);
       return {
         ...state,
         component: <ChatScreen anime={action.payload} />,

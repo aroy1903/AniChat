@@ -4,7 +4,7 @@ import useRender from '../hooks/useRender';
 import Group from './Group';
 export default function Groups() {
   const { dispatch } = useRender();
-  const { documents, error, loading } = useCollection();
+  const { documents, error, loading } = useCollection('groups');
 
   return (
     <div className="h-full w-[35%] bg-white border-r-2 border-black rounded-l-xl overflow-auto flex flex-col">
