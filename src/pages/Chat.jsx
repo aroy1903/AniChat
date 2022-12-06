@@ -13,13 +13,13 @@ export default function Chat() {
 
   return (
     <div className=" flex-grow flex justify-center items-center  bg-[#F6EEF8]">
-      <div className=" h-[750px] w-[52%] border-black rounded-2xl border-2 flex bg-white">
+      <div className=" h-[800px] w-[52%] border-black rounded-2xl border-2 flex bg-white">
         <Groups />
         <div className="flex-grow flex flex-col">
           <div className=" flex w-full items-center h-9 justify-end border-b-2 border-black ">
-            <div className=" flex w-1/4 justify-around mr-3 w[25%] ">
+            <div className=" flex w-[20%] justify-around mr-3 w[25%] h-full ">
               <h2
-                className="cursor-pointer text-[16px] hover:underline w-[75%]"
+                className="cursor-pointer text-[16px] hover:underline w-[75%] h-full flex items-center"
                 onClick={() => dispatch({ type: 'USER' })}
               >
                 My Groups

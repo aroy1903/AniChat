@@ -19,6 +19,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formError, setFormError] = useState(null);
+  const [err, setErr] = useState(null);
   const { dispatch } = useAuth();
 
   const [signInWithEmailAndPassword, user, error] =
@@ -30,11 +31,17 @@ export default function Login() {
       setTimeout(() => setFormError(null), 3000);
       return;
     }
-    const res = await signInWithEmailAndPassword(email, password);
-    dispatch({ type: 'LOGIN', payload: res.user });
-    if (res) {
-      setEmail('');
-      setPassword('');
+    try {
+      const res = await signInWithEmailAndPassword(email, password);
+      if (res) {
+        setEmail('');
+        setPassword('');
+      }
+      console.log(error);
+      dispatch({ type: 'LOGIN', payload: res.user });
+    } catch (err) {
+      setErr('password or email is incorrect');
+      setTimeout(() => setErr(null), 3000);
     }
   };
 
@@ -51,7 +58,7 @@ export default function Login() {
         <VStack spacing={4} align="center" w="full">
           <VStack spacing={1} align="center" w="full">
             <Heading>Login</Heading>
-            {error && <Text>{error.message}</Text>}
+            {err && <Text>{err}</Text>}
             {formError && <Text>{formError}</Text>}
           </VStack>
           <FormControl>

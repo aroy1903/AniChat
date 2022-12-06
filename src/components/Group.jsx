@@ -25,7 +25,7 @@ export default function Group({ data }) {
         minWidth="50px"
       ></Image>
       <Stack flexGrow="1" align="center" justify="center">
-        <Heading fontSize={['2xl', 'lg']} textAlign="center">
+        <Heading fontSize={['2xl', 'lg']} textAlign="center" w="100%">
           {data.anime}
         </Heading>
       </Stack>

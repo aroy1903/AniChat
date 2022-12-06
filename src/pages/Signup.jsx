@@ -35,16 +35,19 @@ export default function Signup() {
       setTimeout(() => setFormError(null), 3000);
       return;
     }
-    const res = await createUserWithEmailAndPassword(email, password);
-    const update = await updateProfile({ displayName });
-    if (res) {
-      dispatch({ type: 'LOGIN', payload: res.user });
-    }
-    if (update) {
-      console.log('all good');
-      setDisplayName('');
-      setEmail('');
-      setPassword('');
+    try {
+      const res = await createUserWithEmailAndPassword(email, password);
+      const update = await updateProfile({ displayName });
+      if (res) {
+        dispatch({ type: 'LOGIN', payload: res.user });
+      }
+      if (update) {
+        setDisplayName('');
+        setEmail('');
+        setPassword('');
+      }
+    } catch (error) {
+      setSignUpErr(error.message);
     }
   };
 
@@ -60,7 +63,7 @@ export default function Signup() {
         <VStack spacing={4} align="center" w="full">
           <VStack spacing={1} align="center" w="full">
             <Heading>Sign Up</Heading>
-            {error && <Text>{error.message}</Text>}
+            {error && <Text>{signupErr}</Text>}
             {formError && <Text>{formError}</Text>}
           </VStack>
           <FormControl id="email" isRequired>

@@ -16,10 +16,11 @@ import useCollection from '../hooks/useCollection';
 import useRender from '../hooks/useRender';
 import { useEffect } from 'react';
 import ChatBubble from './ChatBubble';
+import { useRef } from 'react';
 
 export default function ChatScreen() {
   const { user } = useAuth();
-
+  const bottom = useRef(null);
   const { anime } = useRender();
   const [chat, setChat] = useState('');
 
@@ -33,6 +34,10 @@ export default function ChatScreen() {
     where('animeName', '==', anime),
     orderBy('createdAt', 'asc')
   );
+
+  const scrollToBottom = () => {
+    bottom.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const getDocs = () => {
     onSnapshot(
@@ -49,6 +54,10 @@ export default function ChatScreen() {
       (err) => setError(err.message)
     );
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [documents]);
 
   useEffect(() => {
     getDocs();
@@ -72,7 +81,10 @@ export default function ChatScreen() {
     <div className=" w-full h-full flex flex-col ">
       <h3 className=" text-center text-xl  mt-5">{anime}</h3>
       <div className=" flex-grow">
-        <div className=" h-[90%] w-full bg-white border-2 border-x-0 border-black overflow-y-scroll">
+        <div
+          className=" h-[565px] m-h-[565px] w-full bg-white border-2 border-x-0 border-black overflow-auto "
+          id="scrolly"
+        >
           {error && <p>{error}</p>}
           {documents &&
             documents.map((doc) => (
@@ -82,9 +94,10 @@ export default function ChatScreen() {
                 user={doc.username}
               />
             ))}
+          <span ref={bottom}></span>
         </div>
 
-        <div className="h-[10%] w-full flex bg-white rounded-b-xl items-center">
+        <div className="h-[10%] w-full flex bg-white rounded-b-xl items-center mt-4">
           <FormControl
             w="80%"
             className=" flex items-center justify-center ml-5"
