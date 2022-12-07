@@ -12,7 +12,10 @@ export default function Chat() {
   const setter = () => setPopup(!popup);
 
   return (
-    <div className=" flex-grow flex justify-center items-center  bg-[#F6EEF8]">
+    <div
+      id="main"
+      className=" flex-grow flex justify-center items-center  bg-[#F6EEF8]"
+    >
       <div className=" h-[800px] w-[52%] border-black rounded-2xl border-2 flex bg-white">
         <Groups />
         <div className="flex-grow flex flex-col">

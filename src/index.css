@@ -5,21 +5,18 @@
 * {
   font-family: 'Prompt', sans-serif;
 }
-#scrolly::-webkit-scrollbar {
-  width: 12px;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-/* Track */
-#scrolly::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-/* Handle */
-#scrolly::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #888;
 }
 
-/* Handle on hover */
-#scrolly::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: #555;
 }

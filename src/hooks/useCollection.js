@@ -6,22 +6,15 @@ import {
   orderBy,
   collection,
 } from 'firebase/firestore';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function useCollection(collectionName, queryArr) {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const queryA = useRef(queryArr).current;
-  let _query;
-  if (!queryArr) {
-    _query = ['createdAt', '!=', '1'];
-  } else {
-    _query = queryA;
-  }
 
   const colRef = collection(db, collectionName);
-  let q = query(colRef, where(..._query), orderBy('createdAt', 'desc'));
+  let q = query(colRef, where(...queryArr), orderBy('createdAt', 'desc'));
 
   useEffect(() => {
     setLoading(true);
@@ -41,7 +34,7 @@ export default function useCollection(collectionName, queryArr) {
       }
     );
     return () => unsub();
-  }, [queryA]);
+  }, []);
 
   return { documents, error, loading };
 }
